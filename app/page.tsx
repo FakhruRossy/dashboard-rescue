@@ -2,100 +2,98 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className="grid grid-cols-[auto_250px_1fr] grid-rows-[auto_auto_1fr_20px] min-h-screen">
+      {/* Bar cokelat tua di atas dengan menu */}
+      <div className="w-full h-12 bg-[#4A3425] col-span-3 flex items-center px-4 text-white font-semibold justify-between">
+        <span>Zona Rescue</span>
+        <div className="flex items-center gap-4">
+          <Image src="/bell-icon.jpg" alt="Notifications" width={24} height={24} />
+          <Image src="/mail-icon.jpg" alt="Messages" width={24} height={24} />
+          <span className="text-sm text-gray-300">Responses</span>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-black font-bold">M</div>
+            <span>Gunung Merbabu</span>
+            <Image src="/dropdown-icon.png" alt="Dropdown" width={12} height={12} />
+          </div>
+        </div>
+      </div>
+      
+      {/* Informasi tambahan di bawah bar atas */}
+      <div className="w-full bg-[#F5E6DA] col-span-3 p-4 flex justify-between items-center text-black">
+        <div>
+          <h2 className="font-bold">Gunung Merbabu</h2>
+          <p className="text-xl font-bold">3,145 m</p>
+          <p className="text-orange-600">Elevation</p>
+        </div>
+        <div className="flex gap-8">
+          <div className="text-center">
+            <p className="text-xl font-bold">129</p>
+            <p className="text-gray-600">Total number of Users</p>
+          </div>
+          <div className="text-center">
+            <p className="text-xl font-bold">12</p>
+            <p className="text-gray-600">Master</p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Sidebar cokelat tua di kiri dengan ikon dan teks */}
+      <div className="w-20 h-full bg-[#A67C52] row-span-2 flex flex-col items-center py-6 text-white gap-6">
+        <div className="flex flex-col items-center gap-2">
+          <Image src="/dashboard-icon.png" alt="Dashboard" width={24} height={24} />
+          <span className="text-xs">Dashboard</span>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <Image src="/insights-icon.png" alt="Insights" width={24} height={24} />
+          <span className="text-xs">Insights</span>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <Image src="/history-icon.png" alt="History" width={24} height={24} />
+          <span className="text-xs">History</span>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <Image src="/users-icon.png" alt="Users" width={24} height={24} />
+          <span className="text-xs">Users</span>
+        </div>
+      </div>
+      
+      {/* Kolom tambahan di samping sidebar */}
+      <div className="w-64 h-full bg-[#E0C1A5] row-span-2 flex flex-col p-4 gap-4 text-black">
+        <input
+          type="text"
+          placeholder="Search (Device)"
+          className="p-2 rounded border border-gray-400 w-full"
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <h2 className="text-lg font-bold">Device List</h2>
+        <div className="flex gap-2 text-sm">
+          <span className="font-bold text-blue-600">All</span>
+          <span className="text-gray-600">Master</span>
+          <span className="text-gray-600">Slave</span>
+        </div>
+        
+        {/* Dummy devices - 7 offline */}
+        <div className="mt-4 flex flex-col gap-2">
+          {[...Array(7)].map((_, index) => (
+            <div key={index} className="p-4 bg-white shadow-md rounded-md">
+              <p className="font-bold">Device {index + 1}</p>
+              <p className="text-sm text-red-600">Offline</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Ganti background hitam dengan gambar map tanpa stretch */}
+      <main className="flex flex-col gap-8 row-start-3 col-start-3 items-center sm:items-start p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] relative overflow-hidden">
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="/map-image.jpg"
+            alt="Map"
+            layout="fill"
+            objectFit="cover"
+            className="w-full h-full"
+          />
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
